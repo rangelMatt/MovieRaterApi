@@ -28,7 +28,7 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = [
     'rate-movies.herokuapp.com',
-    ['127.0.0.1']
+    '127.0.0.1',
 ]
 
 
