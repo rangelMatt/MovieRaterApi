@@ -58,3 +58,4 @@ class RatingViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         response = {'message': 'Unable to create rating'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
