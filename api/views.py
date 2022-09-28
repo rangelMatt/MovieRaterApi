@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.decorators import action
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import action, api_view, authentication_classes, permission_classes
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Movie, Rating
 from .serializers import MovieSerializer, RatingSerializer, UserSerializer
@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
 
 
 class MovieViewSet(viewsets.ModelViewSet):
@@ -58,4 +58,3 @@ class RatingViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         response = {'message': 'Unable to create rating'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
