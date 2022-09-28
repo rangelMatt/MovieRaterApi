@@ -4,10 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth import get_user_model
 
 
-class User(models.Model):
-    name = models.CharField(max_length=32)
-
-
 class Movie(models.Model):
     user = models.ForeignKey(
         User,
