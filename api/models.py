@@ -1,12 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth import get_user_model
 
 
 class Movie(models.Model):
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=32)
     description = models.TextField(max_length=360)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    creator = models.ForeignKey(
+        get_user_model(),
+        null=True,
+        on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return self.title
 
     def no_of_ratings(self):
         ratings = Rating.objects.filter(movie=self)
@@ -17,7 +26,6 @@ class Movie(models.Model):
         ratings = Rating.objects.filter(movie=self)
         for rating in ratings:
             sum += rating.stars
-
         if len(ratings) > 0:
             return sum / len(ratings)
         else:
@@ -32,3 +40,6 @@ class Rating(models.Model):
     class Meta:
         unique_together = (('user', 'movie'),)
         index_together = (('user', 'movie'),)
+
+    def __str__(self):
+        return self.user
