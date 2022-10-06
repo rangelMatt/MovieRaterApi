@@ -34,7 +34,7 @@ class MovieViewSet(viewsets.ModelViewSet):
                 serializer = RatingSerializer(rating, many=False)
                 response = {'message': 'Rating updated', 'result': serializer.data}
                 return Response(response, status=status.HTTP_200_OK)
-            finally:
+            except:
                 rating = Rating.objects.create(user=user, movie=movie, stars=stars)
                 serializer = RatingSerializer(rating, many=False)
                 response = {'message': 'Rating created', 'result': serializer.data}
