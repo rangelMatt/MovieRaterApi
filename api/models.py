@@ -14,9 +14,6 @@ class Movie(models.Model):
         on_delete=models.CASCADE
     )
 
-    def __str__(self):
-        return self.title
-
     def no_of_ratings(self):
         ratings = Rating.objects.filter(movie=self)
         return len(ratings)
@@ -41,5 +38,4 @@ class Rating(models.Model):
         unique_together = (('user', 'movie'),)
         index_together = (('user', 'movie'),)
 
-    def __str__(self):
-        return self.user
+
