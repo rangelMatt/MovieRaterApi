@@ -59,7 +59,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000',
     'http://localhost:8080',
     'http://localhost:19006',
-    'https://movie-rater-c0792.web.app'
+    'https://movie-rater-9ef08.web.app'
 ]
 
 ROOT_URLCONF = 'movierater.urls'
