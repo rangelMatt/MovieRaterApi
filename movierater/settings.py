@@ -95,9 +95,14 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': {
         'rest_framework.permissions.IsAuthenticated',
+        'firebase_auth.authentication.FirebaseAuthentication'
     }
 }
 
+FIREBASE_AUTH = {
+    'SERVICE_ACCOUNT_KEY_FILE': 'firebase-adminsdk-kzw07@movie-rater-9ef08.iam.gserviceaccount.com',
+    'EMAIL_VERIFICATION': False
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
